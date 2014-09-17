@@ -5,6 +5,7 @@
 		if (data.url.match(/^user\/([\s\S]*)/)) {
 			socket.emit('plugins.superuser.isSuperUser', function(err, isSuperUser) {
 				if (isSuperUser) {
+					$('span.label-danger').remove();
 					setupBanButton(data);
 				}
 			});
