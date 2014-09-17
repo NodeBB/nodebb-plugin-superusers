@@ -22,7 +22,7 @@
 
 			uid = parseInt(data.uid, 10);
 
-			$('<a id="group-ban-btn" href="#" class="btn btn-primary btn-sm"></a>').insertAfter($('#unfollow-btn'));
+			$('<p><div id="superuser"><a id="group-ban-btn" href="#" class="btn btn-primary btn-sm"></a> </div></p>').insertAfter($('#unfollow-btn'));
 			$btn = $('#group-ban-btn');
 
 			$(window).trigger('action:plugins.superuser.setupButtons', {user: data});
