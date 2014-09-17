@@ -12,7 +12,7 @@ plugin.init = function(app, middleware, controllers, callback) {
 		SocketPlugins.superuser = SocketPlugins.superuser || {};
 		SocketPlugins.superuser.ban = ban;
 		SocketPlugins.superuser.unban = unban;
-		
+
 	SocketPlugins.superuser.isSuperUser = function(socket, data, callback) {
 		isSuperUser(socket.uid ? socket.uid : 0, callback);
 	};
@@ -36,11 +36,11 @@ function isSuperUser(uid, callback) {
 	groups.isMember(uid, group, callback);
 }
 
-function ban(socket, callback) {
+function ban(socket, data, callback) {
 	console.log('banned');
 }
 
-function unban(socket, callback) {
+function unban(socket, data, callback) {
 	console.log('unbanned');
 }
 
