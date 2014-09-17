@@ -12,7 +12,7 @@
 	});
 
 	var $btn;
-	
+
 	function setupBanButton(data) {
 		$.get(RELATIVE_PATH + '/api/' + data.url, function(data) {
 			if (data.isSelf) {
@@ -23,9 +23,9 @@
 			$btn = $('#group-ban-btn');
 
 			if (data.banned) {
-				setupBan();
-			} else {
 				setupUnban();
+			} else {
+				setupBan();
 			}
 		});
 
