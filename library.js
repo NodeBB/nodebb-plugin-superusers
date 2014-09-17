@@ -7,6 +7,11 @@ plugin.init = function(app, middleware, controllers, callback) {
 	app.get('/admin/group-banning', middleware.admin.buildHeader, renderAdmin);
 	app.get('/api/admin/group-banning', renderAdmin);
 
+	var SocketPlugins = module.parent.require('./socket.io/plugins');
+		SocketPlugins.groupBanning = {};
+		SocketPlugins.groupBanning.ban = ban;
+		SocketPlugins.groupBanning.unban = unban;
+
 	callback();
 };
 
@@ -20,6 +25,14 @@ plugin.addAdminNavigation = function(header, callback) {
 	callback(null, header);
 };
 
+
+function ban() {
+	console.log('banned');
+}
+
+function unban() {
+	console.log('unbanned');
+}
 
 function renderAdmin(req, res, next) {
 	groups.list({
