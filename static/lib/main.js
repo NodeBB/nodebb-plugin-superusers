@@ -3,8 +3,8 @@
 (function() {
 	$(window).on('action:ajaxify.end', function(ev, data) {
 		if (data.url.match(/^user\/([\s\S]*)/)) {
-			socket.emit('plugins.groupBanning.canBan', function(err, canBan) {
-				if (canBan) {
+			socket.emit('plugins.superuser.isSuperUser', function(err, isSuperUser) {
+				if (isSuperUser) {
 					setupBanButton(data);
 				}
 			});
@@ -31,7 +31,7 @@
 		function setupBan() {
 			$btn.removeClass('btn-success').addClass('btn-danger').html('Ban');
 			$btn.off('click').on('click', function(ev) {
-				socket.emit('plugins.groupBanning.ban');
+				socket.emit('plugins.superuser.ban');
 				setupUnban();
 				ev.preventDefault();
 				return false;
@@ -41,7 +41,7 @@
 		function setupUnban() {
 			$btn.removeClass('btn-danger').addClass('btn-success').html('Unban');
 			$btn.off('click').on('click', function(ev) {
-				socket.emit('plugins.groupBanning.unban');
+				socket.emit('plugins.superuser.unban');
 				setupBan();
 				ev.preventDefault();
 				return false;

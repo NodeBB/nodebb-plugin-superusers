@@ -9,11 +9,11 @@ plugin.init = function(app, middleware, controllers, callback) {
 	app.get('/api/admin/superuser', renderAdmin);
 
 	var SocketPlugins = module.parent.require('./socket.io/plugins');
-		SocketPlugins.groupBanning = {};
-		SocketPlugins.groupBanning.ban = ban;
-		SocketPlugins.groupBanning.unban = unban;
-		SocketPlugins.groupBanning.canBan = function(socket, data, callback) {
-			canBan(socket.uid ? socket.uid : 0, callback);
+		SocketPlugins.superuser = {};
+		SocketPlugins.superuser.ban = ban;
+		SocketPlugins.superuser.unban = unban;
+		SocketPlugins.superuser.isSuperUser = function(socket, data, callback) {
+			isSuperUser(socket.uid ? socket.uid : 0, callback);
 		};
 
 	callback();
@@ -29,7 +29,7 @@ plugin.addAdminNavigation = function(header, callback) {
 	callback(null, header);
 };
 
-function canBan(uid, callback) {
+function isSuperUser(uid, callback) {
 	var group = meta.config['superuser:groupname'] || '';
 
 	groups.isMember(uid, group, callback);
