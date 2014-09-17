@@ -24,13 +24,13 @@ plugin.addAdminNavigation = function(header, callback) {
 function renderAdmin(req, res, next) {
 	groups.list({
 		expand: true,
-		showSystemGroups: true,
+		showSystemGroups: false,
 		truncateUserList: true
 	}, function(err, groups) {
 		groups = groups.filter(function(group) {
 			return group.name !== 'registered-users' && group.name !== 'guests';
 		});
-		
+
 		res.render('admin/group-banning', {
 			groups: groups
 		});

@@ -8,6 +8,7 @@
 	<div class="alert alert-info">
 		<p>
 			<select class="form-control" data-field="group-banning">
+				<option value="">None</option>
 				<!-- BEGIN groups -->
 				<option value="{groups.name}">{groups.name}</option>
 				<!-- END groups -->
