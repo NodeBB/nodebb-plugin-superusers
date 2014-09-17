@@ -1,13 +1,13 @@
-<h1>Group Banning</h1>
+<h1>Super Users</h1>
 <hr />
 
 <form>
 	<p>
-		Select a group to gain banning privileges
+		Select a group to be declared as superusers. These users will not have access to the ACP but will have the ability to perform various advanced actions such as banning users from their profile page.
 	</p><br />
 	<div class="alert alert-info">
 		<p>
-			<select class="form-control" data-field="group-banning">
+			<select class="form-control" data-field="superuser:groupname">
 				<option value="">None</option>
 				<!-- BEGIN groups -->
 				<option value="{groups.name}">{groups.name}</option>

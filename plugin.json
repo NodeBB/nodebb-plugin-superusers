@@ -1,8 +1,8 @@
 {
-	"id": "nodebb-plugin-group-banning",
-	"name": "NodeBB Group Banning Privileges",
-	"description": "Allows you to set a certain group to have banning privileges",
-	"url": "https://github.com/NodeBB/nodebb-plugin-group-banning",
+	"id": "nodebb-plugin-superusers",
+	"name": "NodeBB Superusers",
+	"description": "Allows you to set a certain group of members to be superusers",
+	"url": "https://github.com/NodeBB/nodebb-plugin-superusers",
 	"library": "./library.js",
 	"hooks": [
 		{

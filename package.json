@@ -1,17 +1,17 @@
 {
-  "name": "nodebb-plugin-group-banning",
+  "name": "nodebb-plugin-superusers",
   "version": "0.0.1",
-  "description": "Allows you to set a certain group to have banning privileges",
+  "description": "Allows you to set a certain group of members to be superusers",
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NodeBB/nodebb-plugin-group-banning"
+    "url": "https://github.com/NodeBB/nodebb-plugin-superusers"
   },
   "keywords": [
     "nodebb",
     "plugin",
     "group",
-    "banning",
+    "superusers",
     "ban",
     "privileges"
   ],
@@ -21,7 +21,7 @@
   },
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/NodeBB/nodebb-plugin-group-banning/issues"
+    "url": "https://github.com/NodeBB/nodebb-plugin-superusers/issues"
   },
   "readmeFilename": "README.md"
 }

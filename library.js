@@ -5,8 +5,8 @@ var plugin = {},
 	meta = module.parent.require('./meta');
 
 plugin.init = function(app, middleware, controllers, callback) {
-	app.get('/admin/group-banning', middleware.admin.buildHeader, renderAdmin);
-	app.get('/api/admin/group-banning', renderAdmin);
+	app.get('/admin/superuser', middleware.admin.buildHeader, renderAdmin);
+	app.get('/api/admin/superuser', renderAdmin);
 
 	var SocketPlugins = module.parent.require('./socket.io/plugins');
 		SocketPlugins.groupBanning = {};
@@ -21,16 +21,16 @@ plugin.init = function(app, middleware, controllers, callback) {
 
 plugin.addAdminNavigation = function(header, callback) {
 	header.plugins.push({
-		route: '/group-banning',
+		route: '/superuser',
 		icon: 'fa-tint',
-		name: 'group-banning'
+		name: 'superuser'
 	});
 
 	callback(null, header);
 };
 
 function canBan(uid, callback) {
-	var group = meta.config['group-banning'] || '';
+	var group = meta.config['superuser:groupname'] || '';
 
 	groups.isMember(uid, group, callback);
 }
@@ -53,7 +53,7 @@ function renderAdmin(req, res, next) {
 			return group.name !== 'registered-users' && group.name !== 'guests';
 		});
 
-		res.render('admin/group-banning', {
+		res.render('admin/superuser', {
 			groups: groups
 		});
 	});
