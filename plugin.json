@@ -1,0 +1,25 @@
+{
+	"id": "nodebb-plugin-group-banning",
+	"name": "NodeBB Group Banning Privileges",
+	"description": "Allows you to set a certain group to have banning privileges",
+	"url": "https://github.com/NodeBB/nodebb-plugin-group-banning",
+	"library": "./library.js",
+	"hooks": [
+		{
+			"hook": "static:app.load", "method": "init"
+		},
+		{
+			"hook": "filter:admin.header.build", "method": "addAdminNavigation"
+		}
+	],
+	"staticDirs": {
+		"static": "./static"
+	},
+	"less": [
+		"static/style.less"
+	],
+	"scripts": [
+		"static/lib/main.js"
+	],
+	"templates": "static/templates"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "nodebb-plugin-group-banning",
+  "version": "0.0.1",
+  "description": "Allows you to set a certain group to have banning privileges",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NodeBB/nodebb-plugin-group-banning"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "group",
+    "banning",
+    "ban",
+    "privileges"
+  ],
+  "author": {
+    "name": "psychobunny",
+    "email": "psycho.bunny@hotmail.com"
+  },
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/NodeBB/nodebb-plugin-group-banning/issues"
+  },
+  "readmeFilename": "README.md"
+}
