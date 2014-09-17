@@ -46,7 +46,7 @@ function ban(socket, data, callback) {
 			return callback(new Error('Not Allowed'));
 		}
 
-		socketAdminUser.banUser(uid, callback);
+		socketAdminUser.banUser(data.uid, callback);
 		console.log('banned');
 	});
 }
@@ -59,7 +59,7 @@ function unban(socket, data, callback) {
 			return callback(new Error('Not Allowed'));
 		}
 
-		user.unban(uid, callback);
+		user.unban(data.uid, callback);
 		console.log('unbanned');
 	});
 }
