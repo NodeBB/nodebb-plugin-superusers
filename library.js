@@ -1,7 +1,8 @@
 "use strict";
 
 var plugin = {},
-	groups = module.parent.require('./groups');
+	groups = module.parent.require('./groups'),
+	meta = module.parent.require('./meta');
 
 plugin.init = function(app, middleware, controllers, callback) {
 	app.get('/admin/group-banning', middleware.admin.buildHeader, renderAdmin);
@@ -11,6 +12,9 @@ plugin.init = function(app, middleware, controllers, callback) {
 		SocketPlugins.groupBanning = {};
 		SocketPlugins.groupBanning.ban = ban;
 		SocketPlugins.groupBanning.unban = unban;
+		SocketPlugins.groupBanning.canBan = function(socket, data, callback) {
+			canBan(socket.uid ? socket.uid : 0, callback);
+		};
 
 	callback();
 };
@@ -25,12 +29,17 @@ plugin.addAdminNavigation = function(header, callback) {
 	callback(null, header);
 };
 
+function canBan(uid, callback) {
+	var group = meta.config['group-banning'] || '';
 
-function ban() {
+	groups.isMember(uid, group, callback);
+}
+
+function ban(socket, callback) {
 	console.log('banned');
 }
 
-function unban() {
+function unban(socket, callback) {
 	console.log('unbanned');
 }
 
