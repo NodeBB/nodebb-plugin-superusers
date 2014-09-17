@@ -2,7 +2,9 @@
 
 var plugin = {},
 	groups = module.parent.require('./groups'),
-	meta = module.parent.require('./meta');
+	meta = module.parent.require('./meta'),
+	user = module.parent.require('./user'),
+	socketAdminUser = module.parent.require('./socket.io/admin/user');
 
 plugin.init = function(app, middleware, controllers, callback) {
 	app.get('/admin/superuser', middleware.admin.buildHeader, renderAdmin);
@@ -37,11 +39,29 @@ function isSuperUser(uid, callback) {
 }
 
 function ban(socket, data, callback) {
-	console.log('banned');
+	var uid = socket.uid ? socket.uid : 0;
+
+	isSuperUser(uid, function(err, isSuperUser) {
+		if (!isSuperUser) {
+			return callback(new Error('Not Allowed'));
+		}
+
+		socketAdminUser.banUser(uid, callback);
+		console.log('banned');
+	});
 }
 
 function unban(socket, data, callback) {
-	console.log('unbanned');
+	var uid = socket.uid ? socket.uid : 0;
+
+	isSuperUser(uid, function(err, isSuperUser) {
+		if (!isSuperUser) {
+			return callback(new Error('Not Allowed'));
+		}
+
+		user.unban(uid, callback);
+		console.log('unbanned');
+	});
 }
 
 function renderAdmin(req, res, next) {
