@@ -11,6 +11,8 @@
 		}
 	});
 
+	var $btn;
+	
 	function setupBanButton(data) {
 		$.get(RELATIVE_PATH + '/api/' + data.url, function(data) {
 			if (data.isSelf) {
