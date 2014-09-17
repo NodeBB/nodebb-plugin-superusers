@@ -9,12 +9,13 @@ plugin.init = function(app, middleware, controllers, callback) {
 	app.get('/api/admin/superuser', renderAdmin);
 
 	var SocketPlugins = module.parent.require('./socket.io/plugins');
-		SocketPlugins.superuser = {};
+		SocketPlugins.superuser = SocketPlugins.superuser || {};
 		SocketPlugins.superuser.ban = ban;
 		SocketPlugins.superuser.unban = unban;
-		SocketPlugins.superuser.isSuperUser = function(socket, data, callback) {
-			isSuperUser(socket.uid ? socket.uid : 0, callback);
-		};
+		
+	SocketPlugins.superuser.isSuperUser = function(socket, data, callback) {
+		isSuperUser(socket.uid ? socket.uid : 0, callback);
+	};
 
 	callback();
 };
