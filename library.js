@@ -6,7 +6,11 @@ var plugin = {},
 	user = module.parent.require('./user'),
 	socketAdminUser = module.parent.require('./socket.io/admin/user');
 
-plugin.init = function(app, middleware, controllers, callback) {
+plugin.init = function(params, callback) {
+	var app = params.app,
+		middleware = params.middleware,
+		controllers = params.controllers;
+		
 	app.get('/admin/superuser', middleware.admin.buildHeader, renderAdmin);
 	app.get('/api/admin/superuser', renderAdmin);
 
@@ -16,7 +20,7 @@ plugin.init = function(app, middleware, controllers, callback) {
 		SocketPlugins.superuser.unban = unban;
 
 	SocketPlugins.superuser.isSuperUser = function(socket, data, callback) {
-		isSuperUser(socket.uid ? socket.uid : 0, callback);
+		plugin.isSuperUser(socket.uid ? socket.uid : 0, callback);
 	};
 
 	callback();
@@ -32,7 +36,7 @@ plugin.addAdminNavigation = function(header, callback) {
 	callback(null, header);
 };
 
-function isSuperUser(uid, callback) {
+plugin.isSuperUser = function(uid, callback) {
 	var group = meta.config['superuser:groupname'] || '';
 
 	groups.isMember(uid, group, callback);
@@ -41,7 +45,7 @@ function isSuperUser(uid, callback) {
 function ban(socket, data, callback) {
 	var uid = socket.uid ? socket.uid : 0;
 
-	isSuperUser(uid, function(err, isSuperUser) {
+	plugin.isSuperUser(uid, function(err, isSuperUser) {
 		if (!isSuperUser) {
 			return callback(new Error('Not Allowed'));
 		}
@@ -54,7 +58,7 @@ function ban(socket, data, callback) {
 function unban(socket, data, callback) {
 	var uid = socket.uid ? socket.uid : 0;
 
-	isSuperUser(uid, function(err, isSuperUser) {
+	plugin.isSuperUser(uid, function(err, isSuperUser) {
 		if (!isSuperUser) {
 			return callback(new Error('Not Allowed'));
 		}
