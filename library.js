@@ -42,6 +42,16 @@ plugin.isSuperUser = function(uid, callback) {
 	groups.isMember(uid, group, callback);
 }
 
+plugin.isModerator = function(params, callback) {
+	plugin.isSuperUser(parseInt(params.uid, 10), function(err, isSuperUser) {
+		if (isSuperUser) {
+			params.isModerator = isSuperUser;
+		}
+
+		callback(null, params);
+	});
+};
+
 function ban(socket, data, callback) {
 	var uid = socket.uid ? socket.uid : 0;
 
