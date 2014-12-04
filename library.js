@@ -44,7 +44,7 @@ plugin.isSuperUser = function(uid, callback) {
 	} else {
 		groups.isMember(uid, group, callback);
 	}
-}
+};
 
 plugin.isModerator = function(params, callback) {
 	plugin.isSuperUser(params.uid, function(err, isSuperUser) {
@@ -55,7 +55,7 @@ plugin.isModerator = function(params, callback) {
 			}
 
 			params.isModerator = arr;
-			callback(null, params)
+			callback(null, params);
 		} else {
 			if (isSuperUser) {
 				params.isModerator = isSuperUser;
