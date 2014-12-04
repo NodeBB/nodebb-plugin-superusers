@@ -40,7 +40,7 @@ plugin.isSuperUser = function(uid, callback) {
 	var group = meta.config['superuser:groupname'] || '';
 
 	if (Array.isArray(uid)) {
-		groups.isMemberOfGroups(uid, group, callback);
+		groups.isMembers(uid, group, callback);
 	} else {
 		groups.isMember(uid, group, callback);
 	}
