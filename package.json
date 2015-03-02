@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-superusers",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Allows you to set a certain group of members to be superusers",
   "main": "library.js",
   "repository": {
