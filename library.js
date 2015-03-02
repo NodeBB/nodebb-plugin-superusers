@@ -37,13 +37,15 @@ plugin.addAdminNavigation = function(header, callback) {
 };
 
 plugin.isSuperUser = function(uid, callback) {
-	var group = meta.config['superuser:groupname'] || '';
+	meta.settings.getOne('superuser', 'groupname', function(err, group) {
+		group = group || '';
 
-	if (Array.isArray(uid)) {
-		groups.isMembers(uid, group, callback);
-	} else {
-		groups.isMember(uid, group, callback);
-	}
+		if (Array.isArray(uid)) {
+			groups.isMembers(uid, group, callback);
+		} else {
+			groups.isMember(uid, group, callback);
+		}
+	});
 };
 
 plugin.isModerator = function(params, callback) {
