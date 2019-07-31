@@ -93,11 +93,10 @@ function unban(socket, data, callback) {
 }
 
 function renderAdmin(req, res, next) {
-	groups.list({
-		expand: true,
-		showSystemGroups: false,
-		truncateUserList: true
-	}, function(err, groups) {
+	groups.getNonPrivilegeGroups('groups:createtime', 0, -1, function (err, groups) {
+		if (err) {
+			return next(err);
+		}
 		groups = groups.filter(function(group) {
 			return group.name !== 'registered-users' && group.name !== 'guests';
 		});
