@@ -1,10 +1,10 @@
 "use strict";
 
-var plugin = {},
-	groups = module.parent.require('./groups'),
-	meta = module.parent.require('./meta'),
-	user = module.parent.require('./user'),
-	socketAdminUser = module.parent.require('./socket.io/admin/user');
+var plugin = {};
+var groups = require.main.require('./src/groups'),
+var meta = require.main.require('./src/meta'),
+var user = require.main.require('./src/user'),
+var socketAdminUser = require.main.require('./src/socket.io/admin/user');
 
 plugin.init = function(params, callback) {
 	var app = params.router,
@@ -77,7 +77,6 @@ function ban(socket, data, callback) {
 		}
 
 		socketAdminUser.banUser(data.uid, callback);
-		console.log('banned');
 	});
 }
 
@@ -90,7 +89,6 @@ function unban(socket, data, callback) {
 		}
 
 		user.unban(data.uid, callback);
-		console.log('unbanned');
 	});
 }
 
