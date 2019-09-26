@@ -14,7 +14,7 @@ plugin.init = function(params, callback) {
 	app.get('/admin/superuser', middleware.admin.buildHeader, renderAdmin);
 	app.get('/api/admin/superuser', renderAdmin);
 
-	var SocketPlugins = module.parent.require('./socket.io/plugins');
+	var SocketPlugins = require.main.require('./src/socket.io/plugins');
 		SocketPlugins.superuser = SocketPlugins.superuser || {};
 		SocketPlugins.superuser.ban = ban;
 		SocketPlugins.superuser.unban = unban;
